@@ -23,8 +23,9 @@ level as your :code:`pom.xml`) and place a file named :code:`extensions.xml` wit
     .mvn/
         extensions.xml
     pom.xml
-    src
-    target
+    src/
+    target/
+    ...
 
 The contents of this file should be as follows (you may also/already have other extensions in this file)::
 
@@ -78,9 +79,6 @@ To test that the :code:`os.version` property's contents match the given regular 
         ...
     </activation>
 
-The given property must be a property available early in the Maven lifecycle (in other words, properties specified
-in the :code:`pom.xml` file will not be matched).
-
 File Contents Contains
 ----------------------
 
@@ -94,6 +92,11 @@ To test that the specified file exists, is accessible, and its contents contain 
         </property>
         ...
     </activation>
+
+By default, file contents are decoded in UTF-8. If this does not work, you can specify a different encoding,
+using any one of the character set names `that Java supports`_::
+
+            <name>[FINER.ACTIVATOR.FILE.CONTAINS][ISO-8859-1]/etc/os_release</name>
 
 File Contents Matches Regular Expression
 ----------------------------------------
@@ -128,6 +131,11 @@ content contains the specified value (case sensitive)::
 Arguments are separated by spaces and you can quote arguments that contain spaces, just like on the command line::
 
             <name>[FINER.ACTIVATOR.SUBPROCESS.CONTENT]foo "bar baz" 'this is "one" argument'</name>
+
+By default, process output is decoded in UTF-8. If this does not work, you can specify a different encoding,
+using any one of the character set names `that Java supports`_::
+
+            <name>[FINER.ACTIVATOR.SUBPROCESS.CONTENT][ISO-8859-1]foo "bar baz" 'this is "one" argument'</name>
 
 Command Execution Matches Regular Expression
 --------------------------------------------
@@ -186,3 +194,5 @@ You should see output like this that indicates how the extension is working::
     [DEBUG] Finer activator 'FINER.ACTIVATOR.SUBPROCESS.REGEX' INACTIVE
 
 This should enable you to figure out what's going on.
+
+.. _that Java supports: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/nio/charset/Charset.html#forName(java.lang.String)
