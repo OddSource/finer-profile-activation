@@ -17,11 +17,13 @@
 package io.oddsource.java.maven.profile;
 
 import java.util.regex.Pattern;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
 import org.apache.maven.model.ActivationProperty;
 import org.apache.maven.model.building.ModelProblemCollector;
+import org.codehaus.plexus.logging.Logger;
 
 /**
  * Determines if the file named by the property name exists and its contents match the regex from the property value.
@@ -36,9 +38,13 @@ public class FileRegexActivator extends BaseFileContentsActivator
 
     /**
      * Construct a FileRegexActivator.
+     *
+     * @param logger A Maven logger, auto-injected by Maven
      */
-    public FileRegexActivator()
+    @Inject
+    public FileRegexActivator(final Logger logger)
     {
+        super(logger);
     }
 
     @Override

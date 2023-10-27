@@ -17,11 +17,13 @@
 package io.oddsource.java.maven.profile;
 
 import java.util.regex.Pattern;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
 import org.apache.maven.model.ActivationProperty;
 import org.apache.maven.model.building.ModelProblemCollector;
+import org.codehaus.plexus.logging.Logger;
 
 /**
  * Run the subprocess indicated by the property name and test that its output matches the regular expression
@@ -37,9 +39,13 @@ public class SubprocessRegexActivator extends BaseSubprocessActivator
 
     /**
      * Construct a SubprocessRegexActivator.
+     *
+     * @param logger A Maven logger, auto-injected by Maven
      */
-    public SubprocessRegexActivator()
+    @Inject
+    public SubprocessRegexActivator(final Logger logger)
     {
+        super(logger);
     }
 
     @Override

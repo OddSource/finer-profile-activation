@@ -16,11 +16,13 @@
 
 package io.oddsource.java.maven.profile;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
 import org.apache.maven.model.ActivationProperty;
 import org.apache.maven.model.building.ModelProblemCollector;
+import org.codehaus.plexus.logging.Logger;
 
 /**
  * Run the subprocess indicated by the property name and test that its output contains the property value.
@@ -35,9 +37,13 @@ public class SubprocessOutputActivator extends BaseSubprocessActivator
 
     /**
      * Construct a SubprocessOutputActivator.
+     *
+     * @param logger A Maven logger, auto-injected by Maven
      */
-    public SubprocessOutputActivator()
+    @Inject
+    public SubprocessOutputActivator(final Logger logger)
     {
+        super(logger);
     }
 
     @Override

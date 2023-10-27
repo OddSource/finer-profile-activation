@@ -16,11 +16,13 @@
 
 package io.oddsource.java.maven.profile;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
 import org.apache.maven.model.ActivationProperty;
 import org.apache.maven.model.building.ModelProblemCollector;
+import org.codehaus.plexus.logging.Logger;
 
 /**
  * Run the subprocess indicated by the property name and tests that its exit code matches the numeric
@@ -36,9 +38,13 @@ public class SubprocessExitCodeActivator extends BaseSubprocessActivator
 
     /**
      * Construct a SubprocessExitCodeActivator.
+     *
+     * @param logger A Maven logger, auto-injected by Maven
      */
-    public SubprocessExitCodeActivator()
+    @Inject
+    public SubprocessExitCodeActivator(final Logger logger)
     {
+        super(logger);
     }
 
     @Override

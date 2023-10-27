@@ -31,6 +31,7 @@ import org.apache.maven.model.ActivationProperty;
 import org.apache.maven.model.Profile;
 import org.apache.maven.model.building.ModelProblemCollector;
 import org.apache.maven.model.profile.ProfileActivationContext;
+import org.codehaus.plexus.logging.Logger;
 
 abstract class BaseSubprocessActivator extends BaseFinerActivator
 {
@@ -39,6 +40,18 @@ abstract class BaseSubprocessActivator extends BaseFinerActivator
     private static final long TIMEOUT = 30;
 
     private static final String PRELUDE = "The command named by the property 'name' (`";
+
+    private final Logger logger;
+
+    /**
+     * Construct a BaseSubprocessActivator.
+     *
+     * @param logger A Maven logger, auto-injected by Maven
+     */
+    protected BaseSubprocessActivator(final Logger logger)
+    {
+        this.logger = logger;
+    }
 
     @Override
     public boolean isActive(
@@ -59,6 +72,7 @@ abstract class BaseSubprocessActivator extends BaseFinerActivator
         final String commandString = helper.getRemainder();
         if(charset == null || commandString == null)
         {
+            this.logger.debug("BaseSubprocessActivator: charset == null || commandString == null");
             return false;
         }
 
@@ -90,6 +104,7 @@ abstract class BaseSubprocessActivator extends BaseFinerActivator
             )
             {
                 final String output = buffer.lines().collect(Collectors.joining("\n"));
+                this.logOutput(command, output);
                 return this.processResultMatches(process.exitValue(), output, property, problems);
             }
         }
@@ -118,6 +133,17 @@ abstract class BaseSubprocessActivator extends BaseFinerActivator
             return Utilities.problem(problems, property,
                 BaseSubprocessActivator.PRELUDE + Arrays.toString(command.toArray()) +
                 "`) could not be executed because an I/O error occurred: " + e
+            );
+        }
+    }
+
+    private void logOutput(final List<String> command, final String output)
+    {
+        if(this.logger.isDebugEnabled())
+        {
+            this.logger.debug(
+                "BaseSubprocessActivator: output from command " + Arrays.toString(command.toArray()) +
+                ": " + output
             );
         }
     }

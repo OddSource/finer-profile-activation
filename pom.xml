@@ -51,8 +51,9 @@
         <version.dependency.test.junit>4.13.2</version.dependency.test.junit>
         <version.plugin.surefire>3.2.1</version.plugin.surefire>
         <version.plugin.sisu>0.3.5</version.plugin.sisu>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <version.plugin.reports>3.4.5</version.plugin.reports>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
     <dependencyManagement>
@@ -208,13 +209,8 @@
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>${version.plugin.javadoc}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-source-plugin</artifactId>
-                    <version>${version.plugin.source}</version>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${version.plugin.surefire}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -235,8 +231,43 @@
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>${version.plugin.surefire}</version>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${version.plugin.source}</version>
+                    <executions>
+                        <execution>
+                            <id>source-package-source</id>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>jar-no-fork</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${version.plugin.javadoc}</version>
+                    <configuration>
+                        <show>public</show>
+                        <detectLinks />
+                        <links>
+                            <link>https://maven.apache.org/ref/3.9.5/maven-model/apidocs/</link>
+                            <link>https://maven.apache.org/ref/3.9.5/maven-model-builder/apidocs/</link>
+                            <link>https://docs.oracle.com/javaee/7/api/</link>
+                            <link>
+                                https://codehaus-plexus.github.io/plexus-containers/plexus-container-default/apidocs/
+                            </link>
+                        </links>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>javadoc-package-javadoc</id>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -265,12 +296,46 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>${version.plugin.reports}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${version.plugin.javadoc}</version>
+                <configuration>
+                    <show>public</show>
+                    <detectLinks />
+                    <links>
+                        <link>https://maven.apache.org/ref/3.9.5/maven-model/apidocs/</link>
+                        <link>https://maven.apache.org/ref/3.9.5/maven-model-builder/apidocs/</link>
+                        <link>https://docs.oracle.com/javaee/7/api/</link>
+                        <link>
+                            https://codehaus-plexus.github.io/plexus-containers/plexus-container-default/apidocs/
+                        </link>
+                    </links>
+                </configuration>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>javadoc-no-fork</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
             </plugin>
         </plugins>
-    </build>
+    </reporting>
 </project>

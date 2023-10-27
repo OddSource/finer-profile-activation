@@ -16,11 +16,13 @@
 
 package io.oddsource.java.maven.profile;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
 import org.apache.maven.model.ActivationProperty;
 import org.apache.maven.model.building.ModelProblemCollector;
+import org.codehaus.plexus.logging.Logger;
 
 /**
  * Determines if the file named by the property name exists and contains the property value within its contents.
@@ -35,9 +37,13 @@ public class FileContainsActivator extends BaseFileContentsActivator
 
     /**
      * Construct a FileContainsActivator.
+     *
+     * @param logger A Maven logger, auto-injected by Maven
      */
-    public FileContainsActivator()
+    @Inject
+    public FileContainsActivator(final Logger logger)
     {
+        super(logger);
     }
 
     @Override

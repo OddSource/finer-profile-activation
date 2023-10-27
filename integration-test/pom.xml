@@ -260,7 +260,7 @@
             <!-- should pass on Debian and Ubuntu machines but not other platforms -->
             <activation>
                 <property>
-                    <name>[FINER.ACTIVATOR.FILE.CONTAINS]/etc/os_release</name>
+                    <name>[FINER.ACTIVATOR.FILE.CONTAINS]/etc/os-release</name>
                     <value>ID_LIKE=debian</value>
                 </property>
             </activation>
@@ -282,7 +282,7 @@
             <activation>
                 <os><family>mac</family></os>
                 <property>
-                    <name>[FINER.ACTIVATOR.FILE.CONTAINS]/etc/os_release</name>
+                    <name>[FINER.ACTIVATOR.FILE.CONTAINS]/etc/os-release</name>
                     <value>ID_LIKE=debian</value>
                 </property>
             </activation>
@@ -304,7 +304,7 @@
             <activation>
                 <os><family>linux</family></os>
                 <property>
-                    <name>[FINER.ACTIVATOR.FILE.CONTAINS]/etc/os_release</name>
+                    <name>[FINER.ACTIVATOR.FILE.CONTAINS]/etc/os-release</name>
                     <value>ID_LIKE=debian</value>
                 </property>
             </activation>
@@ -324,7 +324,7 @@
             <!-- should pass on Debian and Ubuntu machines but not other platforms -->
             <activation>
                 <property>
-                    <name>[FINER.ACTIVATOR.FILE.REGEX]/etc/os_release</name>
+                    <name>[FINER.ACTIVATOR.FILE.REGEX]/etc/os-release</name>
                     <value>ID=((D|d)ebian|((U+u)buntu)</value>
                 </property>
             </activation>
@@ -346,7 +346,7 @@
             <activation>
                 <os><family>mac</family></os>
                 <property>
-                    <name>[FINER.ACTIVATOR.FILE.REGEX]/etc/os_release</name>
+                    <name>[FINER.ACTIVATOR.FILE.REGEX]/etc/os-release</name>
                     <value>ID=((D|d)ebian|((U+u)buntu)</value>
                 </property>
             </activation>
@@ -368,7 +368,7 @@
             <activation>
                 <os><family>linux</family></os>
                 <property>
-                    <name>[FINER.ACTIVATOR.FILE.REGEX]/etc/os_release</name>
+                    <name>[FINER.ACTIVATOR.FILE.REGEX]/etc/os-release</name>
                     <value>ID=((D|d)ebian|((U+u)buntu)</value>
                 </property>
             </activation>

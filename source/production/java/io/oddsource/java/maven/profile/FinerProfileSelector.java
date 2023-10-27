@@ -69,6 +69,10 @@ public class FinerProfileSelector extends DefaultProfileSelector
 
     /**
      * Construct a selector.
+     *
+     * @param logger A Maven logger, auto-injected by Maven
+     * @param standardActivators All built-in activators defined by Maven, auto-injected by Maven
+     * @param finerActivators All activators defined in io.oddsource.java.maven.profile, auto-injected by Maven
      */
     @Inject
     public FinerProfileSelector(

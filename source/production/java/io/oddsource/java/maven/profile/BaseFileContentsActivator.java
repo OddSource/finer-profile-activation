@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import javax.inject.Inject;
 
 import org.apache.maven.model.ActivationProperty;
 import org.apache.maven.model.Profile;
@@ -35,8 +34,17 @@ abstract class BaseFileContentsActivator extends BaseFinerActivator
 
     private static final String PRELUDE = "The file named by the property 'name' ('";
 
-    @Inject
-    private Logger logger;
+    private final Logger logger;
+
+    /**
+     * Construct a BaseFileContentsActivator.
+     *
+     * @param logger A Maven logger, auto-injected by Maven
+     */
+    protected BaseFileContentsActivator(final Logger logger)
+    {
+        this.logger = logger;
+    }
 
     @Override
     @SuppressWarnings("checkstyle.returncount")
@@ -58,7 +66,7 @@ abstract class BaseFileContentsActivator extends BaseFinerActivator
         final String fileName = helper.getRemainder();
         if(charset == null || fileName == null)
         {
-            this.logger.debug("BaseFileContentsActivator: charset == null && filename == null");
+            this.logger.debug("BaseFileContentsActivator: charset == null || filename == null");
             return false;
         }
 
@@ -72,7 +80,7 @@ abstract class BaseFileContentsActivator extends BaseFinerActivator
         final String contents;
         try
         {
-            contents = Files.readString(file.toPath(), charset);
+            contents = new String(Files.readAllBytes(file.toPath()), charset);
         }
         catch(final IOException e)
         {
