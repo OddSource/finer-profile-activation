@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright © 2010-2023 OddSource Code (license@oddsource.io)
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- To run the tests in this project, invoke `mvn help:active-profiles` -->
+
+    <groupId>io.oddsource.java.maven</groupId>
+    <artifactId>finer-profile-activation-integration-test</artifactId>
+    <packaging>pom</packaging>
+
+    <name>OddSource Code Finer Maven Profile Activation Integration Test</name>
+    <version>1.0.0</version>
+    <description>
+        An integration test, not for publication in any repositories
+    </description>
+
+    <profiles>
+        <profile>
+            <id>test-01-os-name-contains-mac</id>
+            <!-- should pass on Macs but not other platforms -->
+            <activation>
+                <property>
+                    <name>[FINER.ACTIVATOR.CONTAINS]os.name</name>
+                    <value>mac</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-02-os-name-contains-nux</id>
+            <!-- should pass on Linux machines but not other platforms -->
+            <activation>
+                <property>
+                    <name>[FINER.ACTIVATOR.CONTAINS]os.name</name>
+                    <value>nux</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-03-os-name-contains-mac-and-os-is-linux</id>
+            <!-- should not pass on any machine -->
+            <activation>
+                <os><family>linux</family></os>
+                <property>
+                    <name>[FINER.ACTIVATOR.CONTAINS]os.name</name>
+                    <value>mac</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-04-os-name-contains-nux-and-os-is-mac</id>
+            <!-- should not pass on any machine -->
+            <activation>
+                <os><family>mac</family></os>
+                <property>
+                    <name>[FINER.ACTIVATOR.CONTAINS]os.name</name>
+                    <value>nux</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-05-os-name-regex-mac-os</id>
+            <!-- should pass on Macs but not other platforms -->
+            <activation>
+                <property>
+                    <name>[FINER.ACTIVATOR.REGEX]os.name</name>
+                    <value>^(M|m)ac\s+((os|OS)(\s+[xX])?)?$</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-06-os-name-regex-linux</id>
+            <!-- should pass on Linux machines but not other platforms -->
+            <activation>
+                <property>
+                    <name>[FINER.ACTIVATOR.REGEX]os.name</name>
+                    <value>^(L|l)inux</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-07-os-name-contains-mac-and-os-is-linux</id>
+            <!-- should not pass on any machine -->
+            <activation>
+                <os><family>linux</family></os>
+                <property>
+                    <name>[FINER.ACTIVATOR.REGEX]os.name</name>
+                    <value>^(M|m)ac\s+((os|OS)(\s+[xX])?)?$</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-08-os-name-contains-nux-and-os-is-mac</id>
+            <!-- should not pass on any machine -->
+            <activation>
+                <os><family>mac</family></os>
+                <property>
+                    <name>[FINER.ACTIVATOR.REGEX]os.name</name>
+                    <value>^(L|l)inux</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-09-process-uname-contains-darwin</id>
+            <!-- should pass on Macs but not other platforms -->
+            <activation>
+                <property>
+                    <name>[FINER.ACTIVATOR.SUBPROCESS.CONTENT]uname -a</name>
+                    <value>Darwin</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-10-process-uname-contains-linux</id>
+            <!-- should pass on Linux machines but not other platforms -->
+            <activation>
+                <property>
+                    <name>[FINER.ACTIVATOR.SUBPROCESS.CONTENT]uname -a</name>
+                    <value>Linux</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-11-process-uname-contains-darwin-and-os-is-linux</id>
+            <!-- should not pass on any machine -->
+            <activation>
+                <os><family>linux</family></os>
+                <property>
+                    <name>[FINER.ACTIVATOR.SUBPROCESS.CONTENT]uname -a</name>
+                    <value>Darwin</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-12-process-uname-contains-linux-and-os-is-mac</id>
+            <!-- should not on any machine -->
+            <activation>
+                <os><family>mac</family></os>
+                <property>
+                    <name>[FINER.ACTIVATOR.SUBPROCESS.CONTENT]uname -a</name>
+                    <value>Linux</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-13-process-uname-contains-darwin-and-os-is-mac</id>
+            <!-- should pass on Macs but not other platforms -->
+            <activation>
+                <os><family>mac</family></os>
+                <property>
+                    <name>[FINER.ACTIVATOR.SUBPROCESS.CONTENT]uname -a</name>
+                    <value>Darwin</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-14-process-uname-contains-linux-and-os-is-mac</id>
+            <!-- should pass on Linux machines but not other platforms -->
+            <activation>
+                <os><family>linux</family></os>
+                <property>
+                    <name>[FINER.ACTIVATOR.SUBPROCESS.CONTENT]uname -a</name>
+                    <value>Linux</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-15-process-uname-regex-darwin</id>
+            <!-- should pass on Macs but not other platforms -->
+            <activation>
+                <property>
+                    <name>[FINER.ACTIVATOR.SUBPROCESS.REGEX]uname -a</name>
+                    <value>^Darwin.*Darwin Kernel Version.*$</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-16-process-uname-regex-linux</id>
+            <!-- should pass on Linux machines but not other platforms -->
+            <activation>
+                <property>
+                    <name>[FINER.ACTIVATOR.SUBPROCESS.REGEX]uname -a</name>
+                    <value>^Linux.*GNU.*$</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-17-process-uname-regex-darwin-and-os-is-linux</id>
+            <!-- should not pass on any machine -->
+            <activation>
+                <os><family>linux</family></os>
+                <property>
+                    <name>[FINER.ACTIVATOR.SUBPROCESS.REGEX]uname -a</name>
+                    <value>^Darwin.*Darwin Kernel Version.*$</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-18-process-uname-regex-linux-and-os-is-mac</id>
+            <!-- should not on any machine -->
+            <activation>
+                <os><family>mac</family></os>
+                <property>
+                    <name>[FINER.ACTIVATOR.SUBPROCESS.REGEX]uname -a</name>
+                    <value>^Linux.*GNU.*$</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-19-process-uname-regex-darwin-and-os-is-mac</id>
+            <!-- should pass on Macs but not other platforms -->
+            <activation>
+                <os><family>mac</family></os>
+                <property>
+                    <name>[FINER.ACTIVATOR.SUBPROCESS.REGEX]uname -a</name>
+                    <value>^Darwin.*Darwin Kernel Version.*$</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-20-process-uname-regex-linux-and-os-is-mac</id>
+            <!-- should pass on Linux machines but not other platforms -->
+            <activation>
+                <os><family>linux</family></os>
+                <property>
+                    <name>[FINER.ACTIVATOR.SUBPROCESS.REGEX]uname -a</name>
+                    <value>^Linux.*GNU.*$</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-21-file-contains-apple</id>
+            <!-- should pass on Macs but not other platforms -->
+            <activation>
+                <property>
+                    <name>[FINER.ACTIVATOR.FILE.CONTAINS]/System/Library/CoreServices/SystemVersion.plist</name>
+                    <value>Apple</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-22-file-contains-debian</id>
+            <!-- should pass on Debian and Ubuntu machines but not other platforms -->
+            <activation>
+                <property>
+                    <name>[FINER.ACTIVATOR.FILE.CONTAINS]/etc/os_release</name>
+                    <value>ID_LIKE=debian</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-23-file-contains-apple-and-os-is-linux</id>
+            <!-- should not pass on any platform -->
+            <activation>
+                <os><family>linux</family></os>
+                <property>
+                    <name>[FINER.ACTIVATOR.FILE.CONTAINS]/System/Library/CoreServices/SystemVersion.plist</name>
+                    <value>Apple</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-24-file-contains-debian-and-os-is-mac</id>
+            <!-- should not pass on any platform -->
+            <activation>
+                <os><family>mac</family></os>
+                <property>
+                    <name>[FINER.ACTIVATOR.FILE.CONTAINS]/etc/os_release</name>
+                    <value>ID_LIKE=debian</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-25-file-contains-apple-and-os-is-mac</id>
+            <!-- should pass on Macs but not other platforms -->
+            <activation>
+                <os><family>mac</family></os>
+                <property>
+                    <name>[FINER.ACTIVATOR.FILE.CONTAINS]/System/Library/CoreServices/SystemVersion.plist</name>
+                    <value>Apple</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-26-file-contains-debian-and-os-is-linux</id>
+            <!-- should pass on Debian and Ubuntu machines but not other platforms -->
+            <activation>
+                <os><family>linux</family></os>
+                <property>
+                    <name>[FINER.ACTIVATOR.FILE.CONTAINS]/etc/os_release</name>
+                    <value>ID_LIKE=debian</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-27-file-regex-macos</id>
+            <!-- should pass on Macs but not other platforms -->
+            <activation>
+                <property>
+                    <name>[FINER.ACTIVATOR.FILE.REGEX]/System/Library/CoreServices/SystemVersion.plist</name>
+                    <value>((M|m)ac(os|OS| OS X))</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-28-file-regex-debian</id>
+            <!-- should pass on Debian and Ubuntu machines but not other platforms -->
+            <activation>
+                <property>
+                    <name>[FINER.ACTIVATOR.FILE.REGEX]/etc/os_release</name>
+                    <value>ID=((D|d)ebian|((U+u)buntu)</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-29-file-regex-macos-and-os-is-linux</id>
+            <!-- should pass on Macs but not other platforms -->
+            <activation>
+                <os><family>linux</family></os>
+                <property>
+                    <name>[FINER.ACTIVATOR.FILE.REGEX]/System/Library/CoreServices/SystemVersion.plist</name>
+                    <value>((M|m)ac(os|OS| OS X))</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-30-file-regex-debian-and-os-is-mac</id>
+            <!-- should pass on Debian and Ubuntu machines but not other platforms -->
+            <activation>
+                <os><family>mac</family></os>
+                <property>
+                    <name>[FINER.ACTIVATOR.FILE.REGEX]/etc/os_release</name>
+                    <value>ID=((D|d)ebian|((U+u)buntu)</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-31-file-regex-macos-and-os-is-mac</id>
+            <!-- should pass on Macs but not other platforms -->
+            <activation>
+                <os><family>mac</family></os>
+                <property>
+                    <name>[FINER.ACTIVATOR.FILE.REGEX]/System/Library/CoreServices/SystemVersion.plist</name>
+                    <value>((M|m)ac(os|OS| OS X))</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-32-file-regex-debian-and-os-is-linux</id>
+            <!-- should pass on Debian and Ubuntu machines but not other platforms -->
+            <activation>
+                <os><family>linux</family></os>
+                <property>
+                    <name>[FINER.ACTIVATOR.FILE.REGEX]/etc/os_release</name>
+                    <value>ID=((D|d)ebian|((U+u)buntu)</value>
+                </property>
+            </activation>
+        </profile>
+    </profiles>
+</project>
