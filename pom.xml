@@ -36,6 +36,14 @@
         A Maven extension for providing finer control over profile activation
     </description>
 
+    <licenses>
+        <license>
+            <name>Apache-2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
     <url>http://github.com/OddSource/finer-profile-activation</url>
     <scm>
         <url>http://github.com/OddSource/finer-profile-activation</url>
