@@ -20,7 +20,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- To run the tests in this project, invoke `mvn help:active-profiles` -->
+    <!-- To run the tests in this project, invoke `mvn help:active-profiles` or, from the root project directory,
+         run `mvn help:active-profiles \-\-file integration-test/pom.xml`. -->
 
     <groupId>io.oddsource.java.maven</groupId>
     <artifactId>finer-profile-activation-integration-test</artifactId>
