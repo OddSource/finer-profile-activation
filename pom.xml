@@ -31,7 +31,7 @@
     <packaging>jar</packaging>
 
     <name>OddSource Code Finer Maven Profile Activation</name>
-    <version>1.0.0-beta1-SNAPSHOT</version>
+    <version>1.0.0-beta1</version>
     <description>
         A Maven extension for providing finer control over profile activation
     </description>
