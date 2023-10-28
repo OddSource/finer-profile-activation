@@ -60,15 +60,6 @@
         <version.plugin.surefire>3.2.1</version.plugin.surefire>
         <version.plugin.sisu>0.3.5</version.plugin.sisu>
         <version.plugin.reports>3.4.5</version.plugin.reports>
-
-        <!-- This is fun. Java < 9 has only -source and -release, and it must be specified as 1.8 for Java 8.
-             Java >= 9 also has \-\-release, which must be specified as 8 for Java 8. But if you use the
-             <release>, <source>, and <target> tags in the compiler plugin config, it attempts to specify all
-             three arguments regardless of the compiler version. Hopefully, using properties like this will
-             make it specify only the arguments the compiler version supports. Might have to use profiles. -->
-        <maven.compiler.release>8</maven.compiler.release>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
     <dependencyManagement>
@@ -350,4 +341,31 @@
             </plugin>
         </plugins>
     </reporting>
+
+    <profiles>
+        <!-- This is fun. Java < 9 has only -source and -release, and it must be specified as 1.8 for Java 8.
+             Java >= 9 also has \-\-release, which must be specified as 8 for Java 8. But if you use the
+             <release>, <source>, and <target> tags in the compiler plugin config, it attempts to specify all
+             three arguments regardless of the compiler version. Even using all three properties makes it attempt
+             to specify all three arguments. Hopefully using profiles like this will resolve the issue. -->
+        <profile>
+            <id>jdk-8-compiler-options</id>
+            <activation>
+                <jdk>[1.8,9)</jdk>
+            </activation>
+            <properties>
+                <maven.compiler.source>1.8</maven.compiler.source>
+                <maven.compiler.target>1.8</maven.compiler.target>
+            </properties>
+        </profile>
+        <profile>
+            <id>jdk-gte-9-compiler-options</id>
+            <activation>
+                <jdk>[9,21)</jdk>
+            </activation>
+            <properties>
+                <maven.compiler.release>8</maven.compiler.release>
+            </properties>
+        </profile>
+    </profiles>
 </project>

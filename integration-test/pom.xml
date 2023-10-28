@@ -77,7 +77,29 @@
             </activation>
         </profile>
         <profile>
-            <id>test-05-os-name-regex-mac-os</id>
+            <id>test-05-os-name-contains-mac-and-os-is-mac</id>
+            <!-- should not pass on any machine -->
+            <activation>
+                <os><family>mac</family></os>
+                <property>
+                    <name>[FINER.ACTIVATOR.CONTAINS]os.name</name>
+                    <value>mac</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-06-os-name-contains-nux-and-os-is-linux</id>
+            <!-- should not pass on any machine -->
+            <activation>
+                <os><family>linux</family></os>
+                <property>
+                    <name>[FINER.ACTIVATOR.CONTAINS]os.name</name>
+                    <value>nux</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-07-os-name-regex-macos</id>
             <!-- should pass on Macs but not other platforms -->
             <activation>
                 <property>
@@ -87,7 +109,7 @@
             </activation>
         </profile>
         <profile>
-            <id>test-06-os-name-regex-linux</id>
+            <id>test-08-os-name-regex-linux</id>
             <!-- should pass on Linux machines but not other platforms -->
             <activation>
                 <property>
@@ -97,7 +119,7 @@
             </activation>
         </profile>
         <profile>
-            <id>test-07-os-name-contains-mac-and-os-is-linux</id>
+            <id>test-09-os-name-regex-macos-and-os-is-linux</id>
             <!-- should not pass on any machine -->
             <activation>
                 <os><family>linux</family></os>
@@ -108,7 +130,7 @@
             </activation>
         </profile>
         <profile>
-            <id>test-08-os-name-contains-nux-and-os-is-mac</id>
+            <id>test-10-os-name-regx-linux-and-os-is-mac</id>
             <!-- should not pass on any machine -->
             <activation>
                 <os><family>mac</family></os>
@@ -119,7 +141,29 @@
             </activation>
         </profile>
         <profile>
-            <id>test-09-process-uname-contains-darwin</id>
+            <id>test-11-os-name-regex-macos-and-os-is-mac</id>
+            <!-- should not pass on any machine -->
+            <activation>
+                <os><family>mac</family></os>
+                <property>
+                    <name>[FINER.ACTIVATOR.REGEX]os.name</name>
+                    <value>^(M|m)ac\s+((os|OS)(\s+[xX])?)?$</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-12-os-name-regx-linux-and-os-is-linux</id>
+            <!-- should not pass on any machine -->
+            <activation>
+                <os><family>linux</family></os>
+                <property>
+                    <name>[FINER.ACTIVATOR.REGEX]os.name</name>
+                    <value>^(L|l)inux</value>
+                </property>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-13-process-uname-contains-darwin</id>
             <!-- should pass on Macs but not other platforms -->
             <activation>
                 <property>
@@ -129,7 +173,7 @@
             </activation>
         </profile>
         <profile>
-            <id>test-10-process-uname-contains-linux</id>
+            <id>test-14-process-uname-contains-linux</id>
             <!-- should pass on Linux machines but not other platforms -->
             <activation>
                 <property>
@@ -139,7 +183,7 @@
             </activation>
         </profile>
         <profile>
-            <id>test-11-process-uname-contains-darwin-and-os-is-linux</id>
+            <id>test-15-process-uname-contains-darwin-and-os-is-linux</id>
             <!-- should not pass on any machine -->
             <activation>
                 <os><family>linux</family></os>
@@ -150,7 +194,7 @@
             </activation>
         </profile>
         <profile>
-            <id>test-12-process-uname-contains-linux-and-os-is-mac</id>
+            <id>test-16-process-uname-contains-linux-and-os-is-mac</id>
             <!-- should not on any machine -->
             <activation>
                 <os><family>mac</family></os>
@@ -161,7 +205,7 @@
             </activation>
         </profile>
         <profile>
-            <id>test-13-process-uname-contains-darwin-and-os-is-mac</id>
+            <id>test-17-process-uname-contains-darwin-and-os-is-mac</id>
             <!-- should pass on Macs but not other platforms -->
             <activation>
                 <os><family>mac</family></os>
@@ -172,7 +216,7 @@
             </activation>
         </profile>
         <profile>
-            <id>test-14-process-uname-contains-linux-and-os-is-mac</id>
+            <id>test-18-process-uname-contains-linux-and-os-is-linux</id>
             <!-- should pass on Linux machines but not other platforms -->
             <activation>
                 <os><family>linux</family></os>
@@ -183,7 +227,7 @@
             </activation>
         </profile>
         <profile>
-            <id>test-15-process-uname-regex-darwin</id>
+            <id>test-19-process-uname-regex-darwin</id>
             <!-- should pass on Macs but not other platforms -->
             <activation>
                 <property>
@@ -193,7 +237,7 @@
             </activation>
         </profile>
         <profile>
-            <id>test-16-process-uname-regex-linux</id>
+            <id>test-20-process-uname-regex-linux</id>
             <!-- should pass on Linux machines but not other platforms -->
             <activation>
                 <property>
@@ -203,7 +247,7 @@
             </activation>
         </profile>
         <profile>
-            <id>test-17-process-uname-regex-darwin-and-os-is-linux</id>
+            <id>test-21-process-uname-regex-darwin-and-os-is-linux</id>
             <!-- should not pass on any machine -->
             <activation>
                 <os><family>linux</family></os>
@@ -214,7 +258,7 @@
             </activation>
         </profile>
         <profile>
-            <id>test-18-process-uname-regex-linux-and-os-is-mac</id>
+            <id>test-22-process-uname-regex-linux-and-os-is-mac</id>
             <!-- should not on any machine -->
             <activation>
                 <os><family>mac</family></os>
@@ -225,7 +269,7 @@
             </activation>
         </profile>
         <profile>
-            <id>test-19-process-uname-regex-darwin-and-os-is-mac</id>
+            <id>test-23-process-uname-regex-darwin-and-os-is-mac</id>
             <!-- should pass on Macs but not other platforms -->
             <activation>
                 <os><family>mac</family></os>
@@ -236,7 +280,7 @@
             </activation>
         </profile>
         <profile>
-            <id>test-20-process-uname-regex-linux-and-os-is-mac</id>
+            <id>test-24-process-uname-regex-linux-and-os-is-linux</id>
             <!-- should pass on Linux machines but not other platforms -->
             <activation>
                 <os><family>linux</family></os>
@@ -247,7 +291,7 @@
             </activation>
         </profile>
         <profile>
-            <id>test-21-file-contains-apple</id>
+            <id>test-25-file-contains-apple</id>
             <!-- should pass on Macs but not other platforms -->
             <activation>
                 <property>
@@ -257,7 +301,7 @@
             </activation>
         </profile>
         <profile>
-            <id>test-22-file-contains-debian</id>
+            <id>test-26-file-contains-debian</id>
             <!-- should pass on Debian and Ubuntu machines but not other platforms -->
             <activation>
                 <property>
@@ -267,7 +311,7 @@
             </activation>
         </profile>
         <profile>
-            <id>test-23-file-contains-apple-and-os-is-linux</id>
+            <id>test-27-file-contains-apple-and-os-is-linux</id>
             <!-- should not pass on any platform -->
             <activation>
                 <os><family>linux</family></os>
@@ -278,7 +322,7 @@
             </activation>
         </profile>
         <profile>
-            <id>test-24-file-contains-debian-and-os-is-mac</id>
+            <id>test-28-file-contains-debian-and-os-is-mac</id>
             <!-- should not pass on any platform -->
             <activation>
                 <os><family>mac</family></os>
@@ -289,7 +333,7 @@
             </activation>
         </profile>
         <profile>
-            <id>test-25-file-contains-apple-and-os-is-mac</id>
+            <id>test-29-file-contains-apple-and-os-is-mac</id>
             <!-- should pass on Macs but not other platforms -->
             <activation>
                 <os><family>mac</family></os>
@@ -300,7 +344,7 @@
             </activation>
         </profile>
         <profile>
-            <id>test-26-file-contains-debian-and-os-is-linux</id>
+            <id>test-30-file-contains-debian-and-os-is-linux</id>
             <!-- should pass on Debian and Ubuntu machines but not other platforms -->
             <activation>
                 <os><family>linux</family></os>
@@ -311,7 +355,7 @@
             </activation>
         </profile>
         <profile>
-            <id>test-27-file-regex-macos</id>
+            <id>test-31-file-regex-macos</id>
             <!-- should pass on Macs but not other platforms -->
             <activation>
                 <property>
@@ -321,7 +365,7 @@
             </activation>
         </profile>
         <profile>
-            <id>test-28-file-regex-debian</id>
+            <id>test-32-file-regex-debian</id>
             <!-- should pass on Debian and Ubuntu machines but not other platforms -->
             <activation>
                 <property>
@@ -331,7 +375,7 @@
             </activation>
         </profile>
         <profile>
-            <id>test-29-file-regex-macos-and-os-is-linux</id>
+            <id>test-33-file-regex-macos-and-os-is-linux</id>
             <!-- should pass on Macs but not other platforms -->
             <activation>
                 <os><family>linux</family></os>
@@ -342,7 +386,7 @@
             </activation>
         </profile>
         <profile>
-            <id>test-30-file-regex-debian-and-os-is-mac</id>
+            <id>test-34-file-regex-debian-and-os-is-mac</id>
             <!-- should pass on Debian and Ubuntu machines but not other platforms -->
             <activation>
                 <os><family>mac</family></os>
@@ -353,7 +397,7 @@
             </activation>
         </profile>
         <profile>
-            <id>test-31-file-regex-macos-and-os-is-mac</id>
+            <id>test-35-file-regex-macos-and-os-is-mac</id>
             <!-- should pass on Macs but not other platforms -->
             <activation>
                 <os><family>mac</family></os>
@@ -364,7 +408,7 @@
             </activation>
         </profile>
         <profile>
-            <id>test-32-file-regex-debian-and-os-is-linux</id>
+            <id>test-36-file-regex-debian-and-os-is-linux</id>
             <!-- should pass on Debian and Ubuntu machines but not other platforms -->
             <activation>
                 <os><family>linux</family></os>
