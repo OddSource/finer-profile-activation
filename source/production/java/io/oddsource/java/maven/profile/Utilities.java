@@ -84,6 +84,7 @@ public final class Utilities
      * @param commandString The command string
      * @return the command arguments.
      */
+    @SuppressWarnings("checkstyle:CyclomaticComplexity") // 13, max allowed is 10, but this really can't be simpler
     public static List<String> tokenize(final String commandString)
     {
         final List<String> command = new ArrayList<>();
@@ -169,6 +170,15 @@ public final class Utilities
 
         private final String remainder;
 
+        /**
+         * Construct a result by performing logic in utility the constructor.
+         *
+         * @param subject The subject from which [CHARSET] should be extracted
+         * @param defaultCharset The default charset if no [CHARSET] is present (not used if an unsupported
+         *                       [CHARSET] is specified, which is an error)
+         * @param property The activation property being analyzed
+         * @param problems A collector of problems
+         */
         public CharsetAndRemainder(
             final String subject,
             final Charset defaultCharset,

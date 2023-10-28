@@ -21,5 +21,5 @@
         "http://www.puppycrawl.com/dtds/suppressions_1_0.dtd">
 <suppressions>
     <suppress files="Test[A-Za-z]+.java"
-              checks="AbbreviationAsWordInName|AvoidStarImport|AvoidStaticImport|MissingCtor|MultipleStringLiterals|MagicNumber" />
+              checks="AbbreviationAsWordInName|AvoidStarImport|AvoidStaticImport|MagicNumber|MissingCtor|MissingJavadocMethod|MissingJavadocType|MultipleStringLiterals" />
 </suppressions>
