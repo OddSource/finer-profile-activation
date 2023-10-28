@@ -79,7 +79,7 @@ abstract class BaseSubprocessActivator extends BaseFinerActivator
         return this.executedAndTestProcess(Utilities.tokenize(commandString), charset, property, problems);
     }
 
-    @SuppressWarnings("checkstyle.returncount")
+    @SuppressWarnings("checkstyle:ReturnCount")
     private boolean executedAndTestProcess(
         final List<String> command,
         final Charset charset,

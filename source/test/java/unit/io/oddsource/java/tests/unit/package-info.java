@@ -14,4 +14,9 @@
  * limitations under the License.
  */
 
+/**
+ * Unit tests.
+ *
+ * @since 1.0.0
+ */
 package io.oddsource.java.tests.unit;

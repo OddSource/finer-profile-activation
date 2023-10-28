@@ -47,7 +47,7 @@ abstract class BaseFileContentsActivator extends BaseFinerActivator
     }
 
     @Override
-    @SuppressWarnings("checkstyle.returncount")
+    @SuppressWarnings("checkstyle:ReturnCount")
     public boolean isActive(
         final String unparsedFileName,
         final ActivationProperty property,

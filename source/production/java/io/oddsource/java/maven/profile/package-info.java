@@ -14,4 +14,9 @@
  * limitations under the License.
  */
 
+/**
+ * A Maven lifecycle extension for improving the capabilities of automatic profile activation.
+ *
+ * @since 1.0.0
+ */
 package io.oddsource.java.maven.profile;
