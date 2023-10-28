@@ -23,7 +23,7 @@
     <parent>
         <groupId>io.oddsource.java</groupId>
         <artifactId>oss-parent</artifactId>
-        <version>2.3-SNAPSHOT</version>
+        <version>2.3.0</version>
     </parent>
 
     <groupId>io.oddsource.java.maven</groupId>
@@ -31,7 +31,7 @@
     <packaging>jar</packaging>
 
     <name>OddSource Code Finer Maven Profile Activation</name>
-    <version>0.1.0-alpha0-SNAPSHOT</version>
+    <version>1.0.0-beta1-SNAPSHOT</version>
     <description>
         A Maven extension for providing finer control over profile activation
     </description>

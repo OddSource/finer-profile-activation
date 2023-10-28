@@ -1,6 +1,18 @@
 Finer-Grained Maven Profile Activation Extension
 ================================================
 
+.. image:: https://github.com/OddSource/finer-profile-activation/actions/workflows/maven.yml/badge.svg
+    :target: https://github.com/OddSource/finer-profile-activation/actions/workflows/maven.yml
+
+.. image:: https://img.shields.io/github/license/OddSource/finer-profile-activation.svg
+    :target: https://github.com/OddSource/finer-profile-activation/blob/master/LICENSE.txt
+
+.. image:: https://img.shields.io/maven-central/v/io.oddsource.java.maven/finer-profile-activation.svg
+    :target: https://search.maven.org/search?q=g:io.oddsource.java%20AND%20a:oss-parent&core=gav
+
+.. image:: https://img.shields.io/github/release/OddSource/finer-profile-activation/all.svg
+    :target: https://github.com/OddSource/finer-profile-activation/releases
+
 Automatic Maven profile activation is very limited. The :code:`<os>`, :code:`<file>`, and :code:`<property>` options
 are exact matches (you can't partial match or use regular expressions), and there's often no way to distinguish
 between very different operating systems. For example, using these tags, you cannot differentiate between RedHat-like
