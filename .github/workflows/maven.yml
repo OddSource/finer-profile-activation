@@ -74,7 +74,14 @@ jobs:
         run: mvn -B help:active-profiles install
 
       - name: Integration Test with Maven
-        run: mvn -B help:active-profiles --file integration-test/pom.xml
+        # This runs code coverage for uploading to Codacy
+        run: mvn -B -P run-integration verify
+
+      - name: Coverage Results Submission to Codacy
+        uses: codacy/codacy-coverage-reporter-action@v1
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          coverage-reports: report -r target/site/jacoco-aggregate/jacoco.xml
 
       - name: Maven Dependency Tree Dependency Submission
         uses: advanced-security/maven-dependency-submission-action@v3.0.3
