@@ -1,16 +1,19 @@
 Finer-Grained Maven Profile Activation Extension
 ================================================
 
-.. image:: https://github.com/OddSource/finer-profile-activation/actions/workflows/maven.yml/badge.svg
-    :target: https://github.com/OddSource/finer-profile-activation/actions/workflows/maven.yml
-.. image:: https://app.codacy.com/project/badge/Grade/4305c9ef294349288688e7b8975e9188
-    :target: https://app.codacy.com/gh/OddSource/finer-profile-activation/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade
 .. image:: https://img.shields.io/github/license/OddSource/finer-profile-activation.svg
-    :target: https://github.com/OddSource/finer-profile-activation/blob/master/LICENSE.txt
+   :target: https://github.com/OddSource/finer-profile-activation/blob/master/LICENSE.txt
 .. image:: https://img.shields.io/maven-central/v/io.oddsource.java.maven/finer-profile-activation.svg
-    :target: https://search.maven.org/search?q=g:io.oddsource.java%20AND%20a:oss-parent&core=gav
+   :target: https://search.maven.org/search?q=g:io.oddsource.java%20AND%20a:oss-parent&core=gav
 .. image:: https://img.shields.io/github/release/OddSource/finer-profile-activation/all.svg
-    :target: https://github.com/OddSource/finer-profile-activation/releases
+   :target: https://github.com/OddSource/finer-profile-activation/releases
+
+.. image:: https://github.com/OddSource/finer-profile-activation/actions/workflows/maven.yml/badge.svg
+   :target: https://github.com/OddSource/finer-profile-activation/actions/workflows/maven.yml
+.. image:: https://app.codacy.com/project/badge/Grade/4305c9ef294349288688e7b8975e9188
+   :target: https://app.codacy.com/gh/OddSource/finer-profile-activation/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade
+.. image:: https://app.codacy.com/project/badge/Coverage/4305c9ef294349288688e7b8975e9188
+   :target: https://app.codacy.com/gh/OddSource/finer-profile-activation/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_coverage
 
 Automatic Maven profile activation is very limited. The :code:`<os>`, :code:`<file>`, and :code:`<property>` options
 are exact matches (you can't partial match or use regular expressions), and there's often no way to distinguish

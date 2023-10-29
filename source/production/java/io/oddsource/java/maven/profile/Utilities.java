@@ -204,7 +204,7 @@ public final class Utilities
                     catch(final UnsupportedCharsetException e)
                     {
                         Utilities.problem(problems, property,
-                            "The charset from the property 'name' ('" + subject + "') is not supported"
+                            "The charset from the property 'name' ('" + subject + "') is not supported."
                         );
                     }
                     this.charset = charset;
@@ -215,7 +215,7 @@ public final class Utilities
             {
                 Utilities.problem(problems, property,
                     "The property 'name' ('" + subject +
-                    "') did not match the optional charset extraction pattern"
+                    "') did not match the optional charset extraction pattern."
                 );
                 this.charset = null;
                 this.remainder = null;

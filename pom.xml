@@ -57,6 +57,7 @@
         <version.dependency.maven.core>3.9.5</version.dependency.maven.core>
         <version.dependency.maven.plugin>3.9.0</version.dependency.maven.plugin>
         <version.dependency.test.junit>4.13.2</version.dependency.test.junit>
+        <version.dependency.test.easymock>5.2.0</version.dependency.test.easymock>
         <version.plugin.jacoco>0.8.11</version.plugin.jacoco>
         <version.plugin.surefire>3.2.1</version.plugin.surefire>
         <version.plugin.exec>3.1.0</version.plugin.exec>
@@ -90,6 +91,13 @@
                 <artifactId>junit</artifactId>
                 <version>${version.dependency.test.junit}</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.easymock</groupId>
+                <artifactId>easymock</artifactId>
+                <version>${version.dependency.test.easymock}</version>
+                <scope>test</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -115,6 +123,12 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.easymock</groupId>
+            <artifactId>easymock</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
