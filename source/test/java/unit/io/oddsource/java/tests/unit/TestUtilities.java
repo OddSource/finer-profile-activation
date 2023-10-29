@@ -16,10 +16,10 @@
 
 package io.oddsource.java.tests.unit;
 
+import static org.junit.Assert.*;
+
 import java.nio.charset.StandardCharsets;
 import java.util.regex.Pattern;
-
-import static org.junit.Assert.*;
 
 import org.apache.maven.model.ActivationProperty;
 import org.apache.maven.model.building.ModelProblem;
@@ -37,6 +37,9 @@ import io.oddsource.java.maven.profile.Utilities;
 
 public class TestUtilities extends EasyMockSupport
 {
+    /**
+     * Mocking.
+     */
     @Rule
     public EasyMockRule rule = new EasyMockRule(this);
 
@@ -84,7 +87,7 @@ public class TestUtilities extends EasyMockSupport
     @Test
     public void testGetPatternWithProblems()
     {
-        Capture<ModelProblemCollectorRequest> capture = EasyMock.newCapture();
+        final Capture<ModelProblemCollectorRequest> capture = EasyMock.newCapture();
         this.collector.add(EasyMock.capture(capture));
         replayAll();
 
@@ -180,7 +183,7 @@ public class TestUtilities extends EasyMockSupport
     @Test
     public void testCharsetAndRemainderUnsupportedCharset()
     {
-        Capture<ModelProblemCollectorRequest> capture = EasyMock.newCapture();
+        final Capture<ModelProblemCollectorRequest> capture = EasyMock.newCapture();
         this.collector.add(EasyMock.capture(capture));
         replayAll();
 
