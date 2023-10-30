@@ -34,7 +34,7 @@ import org.apache.maven.model.profile.ProfileActivationContext;
 @Singleton
 public class PropertyContainsActivator extends BaseFinerActivator
 {
-    private static final String BRACKET_NAME = BRACKET_NAME_PREFIX + "CONTAINS";
+    private static final String BRACKET_NAME = "CONTAINS";
 
     /**
      * Construct a PropertyContainsActivator.

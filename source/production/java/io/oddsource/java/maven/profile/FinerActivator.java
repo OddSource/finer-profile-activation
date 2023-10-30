@@ -29,11 +29,6 @@ import org.apache.maven.model.profile.ProfileActivationContext;
 public interface FinerActivator
 {
     /**
-     * The prefix for all activator property bracket name values.
-     */
-    String BRACKET_NAME_PREFIX = "FINER.ACTIVATOR.";
-
-    /**
      * Get the String to match the name withing the brackets of the magic property name. For example,
      * if the profile activation {@code <property><name>} is {@code [FINER.ACTIVATOR.REGEX]os.name},
      * the activator whose activator bracket value matches "FINER.ACTIVATOR.REGEX" will be chosen.
@@ -59,14 +54,4 @@ public interface FinerActivator
         ProfileActivationContext context,
         ModelProblemCollector problems
     );
-
-    /**
-     * For logging purposes.
-     *
-     * @return a string.
-     */
-    default String asString()
-    {
-        return "Finer activator '" + this.getSupportedActivatorBracketName() + "'";
-    }
 }

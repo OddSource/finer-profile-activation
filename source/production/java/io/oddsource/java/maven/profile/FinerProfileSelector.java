@@ -49,7 +49,7 @@ import org.codehaus.plexus.logging.Logger;
 public class FinerProfileSelector extends DefaultProfileSelector
 {
     private static final Pattern ACTIVATOR_PATTERN = Pattern.compile(
-        "^\\[(?<activator>FINER\\.ACTIVATOR\\.[A-Z0-9.]+)](?<property>.*)$"
+        "^\\[FINER\\.ACTIVATOR\\.(?<activator>[A-Z0-9.]+)](?<property>.*)$"
     );
 
     /**
@@ -101,7 +101,7 @@ public class FinerProfileSelector extends DefaultProfileSelector
         final ModelProblemCollector problems
     )
     {
-        final List<Profile> activeList = super.getActiveProfiles(profiles, context, problems);
+        final List<Profile> activeList = this.getSupersActiveProfiles(profiles, context, problems);
         final Set<String> activeSet = new HashSet<>(activeList.size());
         activeList.forEach(profile -> {
             if(this.logger.isDebugEnabled())
@@ -133,6 +133,26 @@ public class FinerProfileSelector extends DefaultProfileSelector
         }
 
         return activeList;
+    }
+
+    /**
+     * For test-mocking purposes, a wrapper around {@code super.getActiveProfiles(...)}, and
+     * {@link #getActiveProfiles(Collection, ProfileActivationContext, ModelProblemCollector)} calls this method
+     * instead of {@code super.getActiveProfiles(...)}.
+     *
+     * @param profiles The profiles
+     * @param context The context
+     * @param problems A collector of problems
+     * @return the result of the call to {@code super.getActiveProfiles(...)}.
+     */
+    protected List<Profile> getSupersActiveProfiles(
+        final Collection<Profile> profiles,
+        final ProfileActivationContext context,
+        final ModelProblemCollector problems
+    )
+    {
+        // for testing purposes, we separate out this super call so that we can mock it
+        return super.getActiveProfiles(profiles, context, problems);
     }
 
     private boolean isActive(

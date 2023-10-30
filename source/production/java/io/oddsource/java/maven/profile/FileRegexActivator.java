@@ -34,7 +34,7 @@ import org.codehaus.plexus.logging.Logger;
 @Singleton
 public class FileRegexActivator extends BaseFileContentsActivator
 {
-    private static final String BRACKET_NAME = BRACKET_NAME_PREFIX + "FILE.REGEX";
+    private static final String BRACKET_NAME = "FILE.REGEX";
 
     /**
      * Construct a FileRegexActivator.

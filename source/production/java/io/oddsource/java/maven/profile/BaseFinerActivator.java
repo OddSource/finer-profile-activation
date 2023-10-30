@@ -21,6 +21,6 @@ abstract class BaseFinerActivator implements FinerActivator
     @Override
     public String toString()
     {
-        return this.asString();
+        return "Finer activator '" + this.getSupportedActivatorBracketName() + "'";
     }
 }

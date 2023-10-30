@@ -33,7 +33,7 @@ import org.codehaus.plexus.logging.Logger;
 @Singleton
 public class FileContainsActivator extends BaseFileContentsActivator
 {
-    private static final String BRACKET_NAME = BRACKET_NAME_PREFIX + "FILE.CONTAINS";
+    private static final String BRACKET_NAME = "FILE.CONTAINS";
 
     /**
      * Construct a FileContainsActivator.

@@ -33,7 +33,7 @@ import org.codehaus.plexus.logging.Logger;
 @Singleton
 public class SubprocessOutputActivator extends BaseSubprocessActivator
 {
-    private static final String BRACKET_NAME = BRACKET_NAME_PREFIX + "SUBPROCESS.CONTENT";
+    private static final String BRACKET_NAME = "SUBPROCESS.CONTENT";
 
     /**
      * Construct a SubprocessOutputActivator.

@@ -34,7 +34,7 @@ import org.codehaus.plexus.logging.Logger;
 @Singleton
 public class SubprocessExitCodeActivator extends BaseSubprocessActivator
 {
-    private static final String BRACKET_NAME = BRACKET_NAME_PREFIX + "SUBPROCESS.EXIT";
+    private static final String BRACKET_NAME = "SUBPROCESS.EXIT";
 
     /**
      * Construct a SubprocessExitCodeActivator.

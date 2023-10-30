@@ -16,6 +16,7 @@
 
 package io.oddsource.java.tests.unit;
 
+import static org.easymock.EasyMock.*;
 import static org.junit.Assert.*;
 
 import java.nio.charset.StandardCharsets;
@@ -26,7 +27,6 @@ import org.apache.maven.model.building.ModelProblem;
 import org.apache.maven.model.building.ModelProblemCollector;
 import org.apache.maven.model.building.ModelProblemCollectorRequest;
 import org.easymock.Capture;
-import org.easymock.EasyMock;
 import org.easymock.EasyMockRule;
 import org.easymock.EasyMockSupport;
 import org.easymock.Mock;
@@ -87,8 +87,8 @@ public class TestUtilities extends EasyMockSupport
     @Test
     public void testGetPatternWithProblems()
     {
-        final Capture<ModelProblemCollectorRequest> capture = EasyMock.newCapture();
-        this.collector.add(EasyMock.capture(capture));
+        final Capture<ModelProblemCollectorRequest> capture = newCapture();
+        this.collector.add(capture(capture));
         replayAll();
 
         final ActivationProperty property = new ActivationProperty();
@@ -183,8 +183,8 @@ public class TestUtilities extends EasyMockSupport
     @Test
     public void testCharsetAndRemainderUnsupportedCharset()
     {
-        final Capture<ModelProblemCollectorRequest> capture = EasyMock.newCapture();
-        this.collector.add(EasyMock.capture(capture));
+        final Capture<ModelProblemCollectorRequest> capture = newCapture();
+        this.collector.add(capture(capture));
         replayAll();
 
         final ActivationProperty property = new ActivationProperty();

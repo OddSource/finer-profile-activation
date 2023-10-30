@@ -35,7 +35,7 @@ import org.codehaus.plexus.logging.Logger;
 @Singleton
 public class SubprocessRegexActivator extends BaseSubprocessActivator
 {
-    private static final String BRACKET_NAME = BRACKET_NAME_PREFIX + "SUBPROCESS.REGEX";
+    private static final String BRACKET_NAME = "SUBPROCESS.REGEX";
 
     /**
      * Construct a SubprocessRegexActivator.

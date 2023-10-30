@@ -34,7 +34,7 @@ import org.apache.maven.model.profile.ProfileActivationContext;
 @Singleton
 public class PropertyRegexActivator extends BaseFinerActivator
 {
-    private static final String BRACKET_NAME = BRACKET_NAME_PREFIX + "REGEX";
+    private static final String BRACKET_NAME = "REGEX";
 
     /**
      * Construct a PropertyRegexActivator.
