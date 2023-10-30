@@ -16,7 +16,6 @@
 
 package io.oddsource.java.maven.profile;
 
-import java.util.regex.Pattern;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -33,7 +32,7 @@ import org.codehaus.plexus.logging.Logger;
  */
 @Named("propertySubprocessRegexActivator")
 @Singleton
-public class SubprocessRegexActivator extends BaseSubprocessActivator
+public class SubprocessRegexActivator extends BaseSubprocessActivator implements RegexHelperMixin
 {
     private static final String BRACKET_NAME = "SUBPROCESS.REGEX";
 
@@ -62,7 +61,6 @@ public class SubprocessRegexActivator extends BaseSubprocessActivator
         final ModelProblemCollector problems
     )
     {
-        final Pattern pattern = Utilities.getPattern(property, problems, Pattern.MULTILINE);
-        return !output.isEmpty() && pattern != null && pattern.matcher(output).find();
+        return this.match(output, property, problems);
     }
 }

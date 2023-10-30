@@ -69,7 +69,7 @@ public class SubprocessExitCodeActivator extends BaseSubprocessActivator
         catch(final NumberFormatException e)
         {
             return Utilities.problem(problems, property,
-                "The property 'value' ('" + property.getValue() + "') could not be converted to a long"
+                "The property 'value' ('" + property.getValue() + "') could not be converted to a long."
             );
         }
         return exitCode == expectedExitCode;

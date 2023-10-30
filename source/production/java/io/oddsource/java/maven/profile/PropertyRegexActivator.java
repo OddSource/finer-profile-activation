@@ -16,7 +16,6 @@
 
 package io.oddsource.java.maven.profile;
 
-import java.util.regex.Pattern;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
@@ -33,6 +32,7 @@ import org.apache.maven.model.profile.ProfileActivationContext;
 @Named("propertyRegexActivator")
 @Singleton
 public class PropertyRegexActivator extends BaseFinerActivator
+    implements RegexHelperMixin, UserPropertiesHelperMixin
 {
     private static final String BRACKET_NAME = "REGEX";
 
@@ -58,14 +58,6 @@ public class PropertyRegexActivator extends BaseFinerActivator
         final ModelProblemCollector problems
     )
     {
-        final Pattern pattern = Utilities.getPattern(property, problems);
-
-        String sysValue = context.getUserProperties().get(name);
-        if (sysValue == null || sysValue.isEmpty())
-        {
-            sysValue = context.getSystemProperties().get(name);
-        }
-
-        return sysValue != null && !sysValue.isEmpty() && pattern != null && pattern.matcher(sysValue).matches();
+        return this.match(this.getUserOrSystemProperty(name, context), property, problems);
     }
 }

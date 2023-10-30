@@ -33,7 +33,13 @@ import org.apache.maven.model.building.ModelProblemCollector;
 import org.apache.maven.model.profile.ProfileActivationContext;
 import org.codehaus.plexus.logging.Logger;
 
-abstract class BaseSubprocessActivator extends BaseFinerActivator
+/**
+ * An abstract activator that reads executes a process ond compares its output according to rules defined in the
+ * concrete implementation.
+ *
+ * @since 1.0.0
+ */
+public abstract class BaseSubprocessActivator extends BaseFinerActivator
 {
     private static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 

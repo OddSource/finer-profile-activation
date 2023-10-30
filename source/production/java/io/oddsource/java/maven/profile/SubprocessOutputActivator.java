@@ -31,7 +31,7 @@ import org.codehaus.plexus.logging.Logger;
  */
 @Named("propertySubprocessOutputActivator")
 @Singleton
-public class SubprocessOutputActivator extends BaseSubprocessActivator
+public class SubprocessOutputActivator extends BaseSubprocessActivator implements StringContainsHelperMixin
 {
     private static final String BRACKET_NAME = "SUBPROCESS.CONTENT";
 
@@ -60,6 +60,6 @@ public class SubprocessOutputActivator extends BaseSubprocessActivator
         final ModelProblemCollector problems
     )
     {
-        return !output.isEmpty() && output.contains(property.getValue());
+        return this.match(output, property);
     }
 }

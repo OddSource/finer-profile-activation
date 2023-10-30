@@ -16,7 +16,6 @@
 
 package io.oddsource.java.maven.profile;
 
-import java.util.regex.Pattern;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -32,7 +31,7 @@ import org.codehaus.plexus.logging.Logger;
  */
 @Named("propertyFileRegexActivator")
 @Singleton
-public class FileRegexActivator extends BaseFileContentsActivator
+public class FileRegexActivator extends BaseFileContentsActivator implements RegexHelperMixin
 {
     private static final String BRACKET_NAME = "FILE.REGEX";
 
@@ -59,7 +58,6 @@ public class FileRegexActivator extends BaseFileContentsActivator
         final ActivationProperty property,
         final ModelProblemCollector problems)
     {
-        final Pattern pattern = Utilities.getPattern(property, problems, Pattern.MULTILINE);
-        return pattern != null && pattern.matcher(contents).find();
+        return this.match(contents, property, problems);
     }
 }

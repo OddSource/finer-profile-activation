@@ -116,6 +116,7 @@ public class TestUtilities extends EasyMockSupport
     {
         replayAll();
 
+        assertArrayEquals(new String[] {}, Utilities.tokenize("").toArray());
         assertArrayEquals(
             new String[] {"lsb_release"},
             Utilities.tokenize("lsb_release").toArray()
@@ -124,6 +125,27 @@ public class TestUtilities extends EasyMockSupport
             new String[] {"foo", "bar baz 'qux'", "lorem ipsum 'dalor' semet", "that", "is", "what", "I", "mean"},
             Utilities.tokenize(
                 "foo \"bar baz 'qux'\" 'lorem ipsum \\'dalor\\' semet' that is what I mean"
+            ).toArray()
+        );
+        assertArrayEquals(
+            new String[] {"foo", "bar baz \"qux\"", "lorem ipsum \"dalor\" semet", "that", "is", "what", "I", "mean"},
+            Utilities.tokenize(
+                "foo \"bar baz \\\"qux\\\"\" \"lorem ipsum \\\"dalor\\\" semet\" that is what I mean"
+            ).toArray()
+        );
+        assertArrayEquals(
+            new String[] {
+                "foo",
+                "bar baz \\\"qux\\\"",
+                "lorem ipsum \"dalor\" semet",
+                "that",
+                "is",
+                "what",
+                "I",
+                "mean",
+            },
+            Utilities.tokenize(
+                "foo 'bar baz \\\"qux\\\"' \"lorem ipsum \\\"dalor\\\" semet\" that is what I mean"
             ).toArray()
         );
 

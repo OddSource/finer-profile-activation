@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
 
 import org.apache.maven.model.ActivationProperty;
 import org.apache.maven.model.Profile;
@@ -28,7 +29,13 @@ import org.apache.maven.model.building.ModelProblemCollector;
 import org.apache.maven.model.profile.ProfileActivationContext;
 import org.codehaus.plexus.logging.Logger;
 
-abstract class BaseFileContentsActivator extends BaseFinerActivator
+/**
+ * An abstract activator that reads a file ond compares its contents according to rules defined in the concrete
+ * implementation.
+ *
+ * @since 1.0.0
+ */
+public abstract class BaseFileContentsActivator extends BaseFinerActivator
 {
     private static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 
@@ -82,7 +89,7 @@ abstract class BaseFileContentsActivator extends BaseFinerActivator
         {
             contents = new String(Files.readAllBytes(file.toPath()), charset);
         }
-        catch(final IOException e)
+        catch(final IOException | InvalidPathException | SecurityException e)
         {
             return Utilities.problem(problems, property,
                 BaseFileContentsActivator.PRELUDE + fileName + "') exists but could not be read."
@@ -94,7 +101,7 @@ abstract class BaseFileContentsActivator extends BaseFinerActivator
             this.logger.debug("BaseFileContentsActivator: contents of file " + fileName + " = " + contents);
         }
 
-        return !contents.isEmpty() && this.contentsMatch(contents, property, problems);
+        return this.contentsMatch(contents, property, problems);
     }
 
     private File getAbsoluteFile(

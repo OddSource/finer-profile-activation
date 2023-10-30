@@ -16,7 +16,6 @@
 
 package io.oddsource.java.maven.profile;
 
-import java.util.Locale;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
@@ -33,6 +32,7 @@ import org.apache.maven.model.profile.ProfileActivationContext;
 @Named("propertyContainsActivator")
 @Singleton
 public class PropertyContainsActivator extends BaseFinerActivator
+    implements StringContainsHelperMixin, UserPropertiesHelperMixin
 {
     private static final String BRACKET_NAME = "CONTAINS";
 
@@ -58,12 +58,6 @@ public class PropertyContainsActivator extends BaseFinerActivator
         final ModelProblemCollector problems
     )
     {
-        String sysValue = context.getUserProperties().get(name);
-        if (sysValue == null || sysValue.isEmpty())
-        {
-            sysValue = context.getSystemProperties().get(name);
-        }
-
-        return sysValue != null && !sysValue.isEmpty() && sysValue.toLowerCase(Locale.US).contains(property.getValue());
+        return this.match(this.getUserOrSystemProperty(name, context), property, true);
     }
 }

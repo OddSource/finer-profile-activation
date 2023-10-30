@@ -31,7 +31,7 @@ import org.codehaus.plexus.logging.Logger;
  */
 @Named("propertyFileContainsActivator")
 @Singleton
-public class FileContainsActivator extends BaseFileContentsActivator
+public class FileContainsActivator extends BaseFileContentsActivator implements StringContainsHelperMixin
 {
     private static final String BRACKET_NAME = "FILE.CONTAINS";
 
@@ -58,6 +58,6 @@ public class FileContainsActivator extends BaseFileContentsActivator
         final ActivationProperty property,
         final ModelProblemCollector problems)
     {
-        return contents.contains(property.getValue());
+        return this.match(contents, property);
     }
 }
