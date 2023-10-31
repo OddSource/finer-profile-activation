@@ -20,9 +20,8 @@ engines:
     enabled: true
     excluded_paths:
       - "source/test/**/*.java"
-    ignoreAnnotations: true
-    ignoreIdentifiers: true
-    ignoreUsings: true
+  coverage:
+    enabled: true
   duplication:
     config:
       languages:
@@ -30,3 +29,6 @@ engines:
     enabled: true
     exclude_paths:
       - "source/test/**/*.java"
+    ignoreAnnotations: true
+    ignoreIdentifiers: true
+    ignoreUsings: true
